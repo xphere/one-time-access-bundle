@@ -1,0 +1,23 @@
+{
+    "name": "bcc/one-time-access-bundle",
+    "description": "Authenticate your users in a Symfony2 application through a one-time access url",
+    "keywords": ["security", "authentication", "one-time", "password-less"],
+    "license": "MIT",
+    "homepage": "https://github.com/xphere/OneTimeAccessBundle",
+    "authors": [
+        {
+            "name": "Berny Cantos",
+            "email": "be@rny.cc"
+        }
+    ],
+    "type": "symfony-bundle",
+    "require": {
+        "symfony/symfony": "2.1.*"
+    },
+    "target-dir": "BCC/OneTimeAccessBundle",
+    "autoload": {
+        "psr-0": {
+            "BCC\\OneTimeAccessBundle": ""
+        }
+    }
+}
