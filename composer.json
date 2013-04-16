@@ -12,7 +12,7 @@
     ],
     "type": "symfony-bundle",
     "require": {
-        "symfony/symfony": "2.1.*"
+        "symfony/symfony": ">=2.1.1"
     },
     "target-dir": "Berny/OneTimeAccessBundle",
     "autoload": {

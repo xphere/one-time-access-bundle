@@ -21,17 +21,16 @@ Features
 
 Compatibility
 -------------
-Tested under Symfony2 2.1.1
+Tested under Symfony2 2.1.1 and 2.2.0
 
 Installation
 ------------
+### From [composer/packagist](https://getcomposer.org)
+- Add `"berny/one-time-access-bundle": "*@dev"` to your `composer.json` file
 
 ### From [github](https://github.com)
 - [Download the code](https://github.com/xphere/OneTimeAccessBundle) to `YourBundleDirectory/Berny/OneTimeAccessBundle`
 - Add the bundle to your `AppKernel.php`
-
-### From [composer/packagist](https://getcomposer.org)
-Soon...
 
 Usage
 -----
