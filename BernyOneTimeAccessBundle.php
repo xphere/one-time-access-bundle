@@ -1,7 +1,7 @@
 <?php
 
 /*
-* This file is part of the BCC\OneTimeAccessBundle package
+* This file is part of the Berny\OneTimeAccessBundle package
 *
 * (c) Berny Cantos <be@rny.cc>
 *
@@ -9,19 +9,19 @@
 * file that was distributed with this source code.
 */
 
-namespace BCC\OneTimeAccessBundle;
+namespace Berny\OneTimeAccessBundle;
 
-use BCC\OneTimeAccessBundle\DependencyInjection\Security\Factory\OneTimeAccessFactory;
+use Berny\OneTimeAccessBundle\DependencyInjection\Security\Factory\Factory;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class BCCOneTimeAccessBundle extends Bundle
+class BernyOneTimeAccessBundle extends Bundle
 {
     public function build(ContainerBuilder $container)
     {
         parent::build($container);
         $extension = $container->getExtension('security');
-        $factory = new OneTimeAccessFactory();
+        $factory = new Factory();
         $extension->addSecurityListenerFactory($factory);
     }
 }

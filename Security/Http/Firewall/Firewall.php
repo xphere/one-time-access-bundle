@@ -1,7 +1,7 @@
 <?php
 
 /*
-* This file is part of the BCC\OneTimeAccessBundle package
+* This file is part of the Berny\OneTimeAccessBundle package
 *
 * (c) Berny Cantos <be@rny.cc>
 *
@@ -9,9 +9,9 @@
 * file that was distributed with this source code.
 */
 
-namespace BCC\OneTimeAccessBundle\Security\Http\Firewall;
+namespace Berny\OneTimeAccessBundle\Security\Http\Firewall;
 
-use BCC\OneTimeAccessBundle\Security\Authentication\Token\OneTimeAccessToken;
+use Berny\OneTimeAccessBundle\Security\Authentication\Token\Token;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\Security\Http\Firewall\ListenerInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
@@ -19,8 +19,9 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Security\Core\Authentication\AuthenticationManagerInterface;
 use Symfony\Component\Security\Http\SecurityEvents;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
+use Symfony\Component\HttpFoundation\Request;
 
-class OneTimeAccessFirewall implements ListenerInterface
+class Firewall implements ListenerInterface
 {
     private $providerKey;
     private $route;
@@ -43,20 +44,31 @@ class OneTimeAccessFirewall implements ListenerInterface
     {
         $request = $event->getRequest();
 
-        if ($request->attributes->get('_route') === $this->route) {
-            $token = new OneTimeAccessToken($this->providerKey);
-            if ($request->attributes->has($this->parameter)) {
-                $key = $request->attributes->get($this->parameter);
-                $token->setCredentials($key);
-                $authenticatedToken = $this->authenticator->authenticate($token);
-                if ($authenticatedToken) {
-                    $this->context->setToken($authenticatedToken);
-                    if ($this->dispatcher !== null && $this->dispatcher->hasListeners(SecurityEvents::INTERACTIVE_LOGIN)) {
-                        $loginEvent = new InteractiveLoginEvent($request, $authenticatedToken);
-                        $this->dispatcher->dispatch(SecurityEvents::INTERACTIVE_LOGIN, $loginEvent);
-                    }
-                }
+        if ($this->isRoute($request) && ($key = $this->getKey($request)) && ($token = $this->getToken($key))) {
+            $this->context->setToken($token);
+            if ($this->dispatcher !== null && $this->dispatcher->hasListeners(SecurityEvents::INTERACTIVE_LOGIN)) {
+                $loginEvent = new InteractiveLoginEvent($request, $token);
+                $this->dispatcher->dispatch(SecurityEvents::INTERACTIVE_LOGIN, $loginEvent);
             }
         }
+    }
+
+    protected function isRoute(Request $request)
+    {
+        return $request->attributes->get('_route') === $this->route;
+    }
+
+    protected function getKey(Request $request)
+    {
+        if ($request->attributes->has($this->parameter)) {
+            return $request->attributes->get($this->parameter);
+        }
+    }
+
+    protected function getToken($key)
+    {
+        $token = new Token($this->providerKey);
+        $token->setCredentials($key);
+        return $this->authenticator->authenticate($token);
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 /*
-* This file is part of the BCC\OneTimeAccessBundle package
+* This file is part of the Berny\OneTimeAccessBundle package
 *
 * (c) Berny Cantos <be@rny.cc>
 *
@@ -9,14 +9,14 @@
 * file that was distributed with this source code.
 */
 
-namespace BCC\OneTimeAccessBundle\DependencyInjection;
+namespace Berny\OneTimeAccessBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
-class BCCOneTimeAccessExtension extends Extension
+class BernyOneTimeAccessExtension extends Extension
 {
     public function load(array $configs, ContainerBuilder $container)
     {

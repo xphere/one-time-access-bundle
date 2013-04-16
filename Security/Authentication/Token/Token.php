@@ -1,7 +1,7 @@
 <?php
 
 /*
-* This file is part of the BCC\OneTimeAccessBundle package
+* This file is part of the Berny\OneTimeAccessBundle package
 *
 * (c) Berny Cantos <be@rny.cc>
 *
@@ -9,12 +9,12 @@
 * file that was distributed with this source code.
 */
 
-namespace BCC\OneTimeAccessBundle\Security\Authentication\Token;
+namespace Berny\OneTimeAccessBundle\Security\Authentication\Token;
 
 use Symfony\Component\Security\Core\Authentication\Token\AbstractToken;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class OneTimeAccessToken extends AbstractToken
+class Token extends AbstractToken
 {
     private $providerKey;
     private $credentials;

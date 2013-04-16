@@ -1,7 +1,7 @@
 <?php
 
 /*
-* This file is part of the BCC\OneTimeAccessBundle package
+* This file is part of the Berny\OneTimeAccessBundle package
 *
 * (c) Berny Cantos <be@rny.cc>
 *
@@ -9,15 +9,15 @@
 * file that was distributed with this source code.
 */
 
-namespace BCC\OneTimeAccessBundle\Security\Authentication\Provider;
+namespace Berny\OneTimeAccessBundle\Security\Authentication\Provider;
 
-use BCC\OneTimeAccessBundle\Security\Authentication\Token\OneTimeAccessToken;
-use BCC\OneTimeAccessBundle\Security\Provider\OneTimeAccessProviderInterface;
+use Berny\OneTimeAccessBundle\Security\Authentication\Token\Token;
+use Berny\OneTimeAccessBundle\Security\Provider\ProviderInterface;
 use Symfony\Component\Security\Core\Authentication\Provider\AuthenticationProviderInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\User\UserCheckerInterface;
 
-class OneTimeAccessProvider implements AuthenticationProviderInterface
+class Provider implements AuthenticationProviderInterface
 {
     private $providerKey;
     private $otaProvider;
@@ -26,9 +26,9 @@ class OneTimeAccessProvider implements AuthenticationProviderInterface
     public function __construct($providerKey, $otaProvider, UserCheckerInterface $userChecker)
     {
         $this->providerKey = $providerKey;
-        if ($otaProvider instanceof OneTimeAccessProviderInterface === false) {
+        if ($otaProvider instanceof ProviderInterface === false) {
             throw new \InvalidArgumentException(
-                'Provider must implement BCC\OTA\Security\ProviderInterface interface.'
+                'Provider must implement Berny\OneTimeAccessBundle\Security\ProviderInterface interface.'
             );
         }
         $this->otaProvider = $otaProvider;
@@ -42,12 +42,12 @@ class OneTimeAccessProvider implements AuthenticationProviderInterface
         }
 
         $ota = $token->getCredentials();
-        $user = $this->otaProvider->loadUserByOneTimeAccess($ota);
+        $user = $this->otaProvider->loadUserByOTA($ota);
 
         if ($user) {
             $this->userChecker->checkPostAuth($user);
-            $this->otaProvider->invalidateByOneTimeAccess($ota);
-            $authenticatedToken = new OneTimeAccessToken($this->providerKey, $user);
+            $this->otaProvider->invalidateByOTA($ota);
+            $authenticatedToken = new Token($this->providerKey, $user);
             $authenticatedToken->setAttributes($token->getAttributes());
             $authenticatedToken->setAuthenticated(true);
             return $authenticatedToken;
@@ -56,6 +56,6 @@ class OneTimeAccessProvider implements AuthenticationProviderInterface
 
     public function supports(TokenInterface $token)
     {
-        return $token instanceof OneTimeAccessToken && $token->getProviderKey() === $this->providerKey;
+        return $token instanceof Token && $token->getProviderKey() === $this->providerKey;
     }
 }
