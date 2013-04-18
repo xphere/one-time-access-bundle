@@ -34,14 +34,13 @@ Installation
 
 Usage
 -----
-
-Add `berny_ota` key in any firewall with, at least, a `route`.
+Add a `one_time_access` key in any firewall with, at least, a `route`.
 
 ```yml
 security:
     firewalls:
         root:
-            berny_ota:
+            one_time_access:
                 route: acme_myapp_ota
 ```
 
@@ -58,7 +57,7 @@ security:
     firewalls:
         root:
             provider: users
-            berny_ota:
+            one_time_access:
                 route: acme_myapp_ota
 ```
 
@@ -72,7 +71,7 @@ services:
 security:
     firewalls:
         root:
-            berny_ota:
+            one_time_access:
                 route: acme_myapp_ota
                 ota_provider: acme.myapp.ota.repository
 ```
@@ -91,7 +90,7 @@ This can be customized with the `parameter` key.
 security:
     firewalls:
         root:
-            berny_ota:
+            one_time_access:
                 route: acme_myapp_ota
                 parameter: otatoken
 ```
@@ -100,7 +99,6 @@ Of course, you can define your routes as always, using YAML, XML, annotations...
 
 Token generation
 ----------------
-
 This bundle doesn't cover token generation.
 It's up to you to create unique tokens and link them to the user.
 
@@ -137,7 +135,6 @@ class OTARepository extends EntityRepository implements ProviderInterface
 
 Route generation
 ----------------
-
 Route generation is up to you too. Yes!
 Are we being lazy, you say? Nope!
 This means FULLY CUSTOMIZABLE routes for your one-time access links.
