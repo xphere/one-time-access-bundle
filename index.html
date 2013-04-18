@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Onetimeaccessbundle by xphere</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Onetimeaccessbundle</h1>
+        <h2>Symfony2 security extension to allow One-Time access</h2>
+        <a href="https://github.com/xphere/OneTimeAccessBundle" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>Berny\OneTimeAccessBundle</h1>
+
+<p>Do you ever wanted to authenticate your users in a Symfony2 application through a <em>one-time access url</em>?</p>
+
+<p>Seek no more! This is your bundle! :D</p>
+
+<h2>Why I would want that?</h2>
+
+<p>You can use one-time access urls for:</p>
+
+<ul>
+<li>Access to "Forgot your password?" forms</li>
+<li><a href="http://notes.xoxco.com/post/27999787765/is-it-time-for-password-less-login">Password-less systems</a></li>
+</ul><h2>Features</h2>
+
+<ul>
+<li>Customizable urls</li>
+<li>User defined token generation and retrieval</li>
+<li>Multiple firewalls</li>
+</ul><h2>Compatibility</h2>
+
+<p>Tested under Symfony2 2.1.1 and 2.2.0</p>
+
+<h2>Installation</h2>
+
+<h3>From <a href="https://getcomposer.org">composer/packagist</a>
+</h3>
+
+<ul>
+<li>Add <code>"berny/one-time-access-bundle": "*@dev"</code> to your <code>composer.json</code> file</li>
+</ul><h3>From <a href="https://github.com">github</a>
+</h3>
+
+<ul>
+<li>
+<a href="https://github.com/xphere/OneTimeAccessBundle">Download the code</a> to <code>YourBundleDirectory/Berny/OneTimeAccessBundle</code>
+</li>
+<li>Add the bundle to your <code>AppKernel.php</code>
+</li>
+</ul><h2>Usage</h2>
+
+<p>Add a <code>one_time_access</code> key in any firewall with, at least, a <code>route</code>.</p>
+
+<div class="highlight"><pre><span class="l-Scalar-Plain">security</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">firewalls</span><span class="p-Indicator">:</span>
+        <span class="l-Scalar-Plain">root</span><span class="p-Indicator">:</span>
+            <span class="l-Scalar-Plain">one_time_access</span><span class="p-Indicator">:</span>
+                <span class="l-Scalar-Plain">route</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">acme_myapp_ota</span>
+</pre></div>
+
+<p>The current user provider must implement <code>OneTimeAccessBundle\Security\Provider\ProviderInterface</code>.</p>
+
+<div class="highlight"><pre><span class="l-Scalar-Plain">security</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">provider</span><span class="p-Indicator">:</span>
+        <span class="l-Scalar-Plain">users</span><span class="p-Indicator">:</span>
+            <span class="l-Scalar-Plain">entity</span><span class="p-Indicator">:</span>
+                <span class="c1"># AcmeMyAppBundle:UserRepository implements ProviderInterface</span>
+                <span class="l-Scalar-Plain">class</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">AcmeMyAppBundle:User</span>
+
+    <span class="l-Scalar-Plain">firewalls</span><span class="p-Indicator">:</span>
+        <span class="l-Scalar-Plain">root</span><span class="p-Indicator">:</span>
+            <span class="l-Scalar-Plain">provider</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">users</span>
+            <span class="l-Scalar-Plain">one_time_access</span><span class="p-Indicator">:</span>
+                <span class="l-Scalar-Plain">route</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">acme_myapp_ota</span>
+</pre></div>
+
+<p>You can set the <code>ota_provider</code> key to define a different service implementing the interface.</p>
+
+<div class="highlight"><pre><span class="l-Scalar-Plain">services</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">acme.myapp.ota.repository</span><span class="p-Indicator">:</span>
+        <span class="l-Scalar-Plain">class</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Acme\\MyAppSecurity\\UserProvider</span>
+
+<span class="l-Scalar-Plain">security</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">firewalls</span><span class="p-Indicator">:</span>
+        <span class="l-Scalar-Plain">root</span><span class="p-Indicator">:</span>
+            <span class="l-Scalar-Plain">one_time_access</span><span class="p-Indicator">:</span>
+                <span class="l-Scalar-Plain">route</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">acme_myapp_ota</span>
+                <span class="l-Scalar-Plain">ota_provider</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">acme.myapp.ota.repository</span>
+</pre></div>
+
+<p>By default, <code>route</code> must have a <code>_token</code> parameter to extract the one-time access token.</p>
+
+<div class="highlight"><pre>    <span class="l-Scalar-Plain">acme_myapp_ota</span><span class="p-Indicator">:</span>
+        <span class="l-Scalar-Plain">pattern</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">^/autologin/{_token}</span>
+        <span class="l-Scalar-Plain">defaults</span><span class="p-Indicator">:</span> <span class="p-Indicator">{</span> <span class="nv">_controller</span><span class="p-Indicator">:</span> <span class="nv">AcmeMyAppBundle</span><span class="p-Indicator">:</span><span class="nv">Login</span><span class="p-Indicator">:</span><span class="nv">oneTimeAccess</span> <span class="p-Indicator">}</span>
+</pre></div>
+
+<p>This can be customized with the <code>parameter</code> key.</p>
+
+<div class="highlight"><pre><span class="l-Scalar-Plain">security</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">firewalls</span><span class="p-Indicator">:</span>
+        <span class="l-Scalar-Plain">root</span><span class="p-Indicator">:</span>
+            <span class="l-Scalar-Plain">one_time_access</span><span class="p-Indicator">:</span>
+                <span class="l-Scalar-Plain">route</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">acme_myapp_ota</span>
+                <span class="l-Scalar-Plain">parameter</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">otatoken</span>
+</pre></div>
+
+<p>Of course, you can define your routes as always, using YAML, XML, annotations... you name it.</p>
+
+<h2>Token generation</h2>
+
+<p>This bundle doesn't cover token generation.
+It's up to you to create unique tokens and link them to the user.</p>
+
+<p>This could be part of a Doctrine implementation:</p>
+
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">OTARepository</span> <span class="k">extends</span> <span class="nx">EntityRepository</span> <span class="k">implements</span> <span class="nx">ProviderInterface</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">generateOTA</span><span class="p">(</span><span class="nv">$user</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$token</span> <span class="o">=</span> <span class="nb">md5</span><span class="p">(</span><span class="nv">$user</span><span class="o">-&gt;</span><span class="na">getUsername</span><span class="p">()</span> <span class="o">.</span> <span class="nb">time</span><span class="p">());</span>
+        <span class="nv">$ota</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YourOneTimeAccessEntity</span><span class="p">(</span><span class="nv">$user</span><span class="p">,</span> <span class="nv">$token</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getEntityManager</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">persist</span><span class="p">(</span><span class="nv">$ota</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getEntityManager</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">flush</span><span class="p">(</span><span class="nv">$ota</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nv">$ota</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">loadUserByOTA</span><span class="p">(</span><span class="nv">$token</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$ota</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">findOneByToken</span><span class="p">(</span><span class="nv">$token</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$ota</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// Remember, user must be defined as EAGER in OTAEntity</span>
+            <span class="k">return</span> <span class="nv">$ota</span><span class="o">-&gt;</span><span class="na">getUser</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">invalidateByOTA</span><span class="p">(</span><span class="nv">$token</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$ota</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">findOneByToken</span><span class="p">(</span><span class="nv">$token</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getEntityManager</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">remove</span><span class="p">(</span><span class="nv">$ota</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getEntityManager</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">flush</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<h2>Route generation</h2>
+
+<p>Route generation is up to you too. Yes!
+Are we being lazy, you say? Nope!
+This means FULLY CUSTOMIZABLE routes for your one-time access links.</p>
+
+<p>For example:</p>
+
+<div class="highlight"><pre><span class="nv">$ota</span> <span class="o">=</span> <span class="nv">$oneTimeAccessRepository</span><span class="o">-&gt;</span><span class="na">generateOnetimeAccess</span><span class="p">(</span><span class="nv">$user</span><span class="p">);</span>
+<span class="nv">$url</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">generateUrl</span><span class="p">(</span><span class="s1">'acme_myapp_ota'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'_token'</span> <span class="o">=&gt;</span> <span class="nv">$ota</span><span class="o">-&gt;</span><span class="na">getToken</span><span class="p">(),</span>
+<span class="p">));</span>
+</pre></div>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/xphere/OneTimeAccessBundle/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/xphere/OneTimeAccessBundle/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/xphere/OneTimeAccessBundle"></a> is maintained by <a href="https://github.com/xphere">xphere</a>.</p>
+
+          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-39572662-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
