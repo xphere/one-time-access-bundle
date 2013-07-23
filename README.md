@@ -5,6 +5,8 @@ Do you ever wanted to authenticate your users in a Symfony2 application through 
 
 Seek no more! This is your bundle! :D
 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/e0a17c4a-fcc8-4e10-90ed-2c601c406924/small.png)](https://insight.sensiolabs.com/projects/e0a17c4a-fcc8-4e10-90ed-2c601c406924)
+
 Why I would want that?
 ----------------------
 
