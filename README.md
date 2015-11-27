@@ -1,11 +1,17 @@
-Berny\OneTimeAccessBundle
-=========================
+xphere/one-time-access-bundle
+=============================
 
 Do you ever wanted to authenticate your users in a Symfony2 application through a *one-time access url*?
 
 Seek no more! This is your bundle! :D
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/e0a17c4a-fcc8-4e10-90ed-2c601c406924/small.png)](https://insight.sensiolabs.com/projects/e0a17c4a-fcc8-4e10-90ed-2c601c406924)
+
+⚠ Note ⚠
+--------
+Mind the package rename
+- Before `1.0.0`: `berny/one-time-access-bundle`
+- After  `1.0.0`: `xphere/one-time-access-bundle`
 
 Why I would want that?
 ----------------------
@@ -23,16 +29,13 @@ Features
 
 Compatibility
 -------------
-Tested under Symfony2 2.1.1 and 2.2.0
+Tested under Symfony2 2.1.1 and greater
 
 Installation
 ------------
 ### From [composer/packagist](https://getcomposer.org)
-- Add `"berny/one-time-access-bundle": "*@dev"` to your `composer.json` file
-
-### From [github](https://github.com)
-- [Download the code](https://github.com/xphere/OneTimeAccessBundle) to `YourBundleDirectory/Berny/OneTimeAccessBundle`
-- Add the bundle to your `AppKernel.php`
+- Add `"xphere/one-time-access-bundle": "^1.1"` to your `composer.json` file
+- Add the bundle to your kernel with `new xPheRe\OneTimeAccessBundle\xPheReOneTimeAccessBundle()`
 
 Usage
 -----

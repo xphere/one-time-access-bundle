@@ -1,7 +1,7 @@
 <?php
 
 /*
-* This file is part of the Berny\OneTimeAccessBundle package
+* This file is part of the xphere/one-time-access-bundle package
 *
 * (c) Berny Cantos <be@rny.cc>
 *
@@ -9,10 +9,10 @@
 * file that was distributed with this source code.
 */
 
-namespace Berny\OneTimeAccessBundle\Security\Authentication\Provider;
+namespace xPheRe\OneTimeAccessBundle\Security\Authentication\Provider;
 
-use Berny\OneTimeAccessBundle\Security\Authentication\Token\Token;
-use Berny\OneTimeAccessBundle\Security\Provider\ProviderInterface;
+use xPheRe\OneTimeAccessBundle\Security\Authentication\Token\Token;
+use xPheRe\OneTimeAccessBundle\Security\Provider\ProviderInterface;
 use Symfony\Component\Security\Core\Authentication\Provider\AuthenticationProviderInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\User\UserCheckerInterface;
@@ -28,7 +28,7 @@ class Provider implements AuthenticationProviderInterface
         $this->providerKey = $providerKey;
         if ($otaProvider instanceof ProviderInterface === false) {
             throw new \InvalidArgumentException(
-                'Provider must implement Berny\OneTimeAccessBundle\Security\ProviderInterface interface.'
+                'Provider must implement xPheRe\OneTimeAccessBundle\Security\ProviderInterface interface.'
             );
         }
         $this->otaProvider = $otaProvider;

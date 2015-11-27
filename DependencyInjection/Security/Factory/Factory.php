@@ -1,7 +1,7 @@
 <?php
 
 /*
-* This file is part of the Berny\OneTimeAccessBundle package
+* This file is part of the xphere/one-time-access-bundle package
 *
 * (c) Berny Cantos <be@rny.cc>
 *
@@ -9,7 +9,7 @@
 * file that was distributed with this source code.
 */
 
-namespace Berny\OneTimeAccessBundle\DependencyInjection\Security\Factory;
+namespace xPheRe\OneTimeAccessBundle\DependencyInjection\Security\Factory;
 
 use Symfony\Bundle\SecurityBundle\DependencyInjection\Security\Factory\SecurityFactoryInterface;
 use Symfony\Component\Config\Definition\Builder\NodeDefinition;
@@ -43,14 +43,14 @@ class Factory implements SecurityFactoryInterface
 
         $provider = "security.authentication.provider.one_time_access.{$firewall}";
         $container
-            ->setDefinition($provider, new DefinitionDecorator('berny.ota.provider'))
+            ->setDefinition($provider, new DefinitionDecorator('xphere.ota.provider'))
             ->replaceArgument(0, $firewall)
             ->replaceArgument(1, new Reference($otaProvider))
         ;
 
         $listener = "security.authentication.listener.one_time_access.{$firewall}";
         $container
-            ->setDefinition($listener, new DefinitionDecorator('berny.ota.firewall'))
+            ->setDefinition($listener, new DefinitionDecorator('xphere.ota.firewall'))
             ->replaceArgument(0, $firewall)
             ->replaceArgument(1, $config)
         ;

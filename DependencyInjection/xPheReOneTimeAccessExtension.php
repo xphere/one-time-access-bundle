@@ -1,7 +1,7 @@
 <?php
 
 /*
-* This file is part of the Berny\OneTimeAccessBundle package
+* This file is part of the xphere/one-time-access-bundle package
 *
 * (c) Berny Cantos <be@rny.cc>
 *
@@ -9,14 +9,14 @@
 * file that was distributed with this source code.
 */
 
-namespace Berny\OneTimeAccessBundle\DependencyInjection;
+namespace xPheRe\OneTimeAccessBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
-class BernyOneTimeAccessExtension extends Extension
+class xPheReOneTimeAccessExtension extends Extension
 {
     public function load(array $configs, ContainerBuilder $container)
     {
