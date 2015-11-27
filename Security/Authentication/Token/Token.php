@@ -1,7 +1,7 @@
 <?php
 
 /*
-* This file is part of the Berny\OneTimeAccessBundle package
+* This file is part of the Xphere\OneTimeAccessBundle package
 *
 * (c) Berny Cantos <be@rny.cc>
 *
@@ -9,7 +9,7 @@
 * file that was distributed with this source code.
 */
 
-namespace Berny\OneTimeAccessBundle\Security\Authentication\Token;
+namespace Xphere\OneTimeAccessBundle\Security\Authentication\Token;
 
 use Symfony\Component\Security\Core\Authentication\Token\AbstractToken;
 use Symfony\Component\Security\Core\User\UserInterface;

@@ -1,5 +1,5 @@
 {
-    "name": "berny/one-time-access-bundle",
+    "name": "xphere/one-time-access-bundle",
     "description": "Authenticate your users in a Symfony2 application through a one-time access url",
     "keywords": ["security", "authentication", "one-time", "access", "ota", "password-less", "bundle"],
     "license": "MIT",
@@ -14,10 +14,9 @@
     "require": {
         "symfony/symfony": ">=2.1.1"
     },
-    "target-dir": "Berny/OneTimeAccessBundle",
     "autoload": {
-        "psr-0": {
-            "Berny\\OneTimeAccessBundle": ""
+        "psr-4": {
+            "Xphere\\OneTimeAccessBundle\\": ""
         }
     }
 }

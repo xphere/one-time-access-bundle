@@ -4,18 +4,18 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="berny.ota.provider.class">Berny\OneTimeAccessBundle\Security\Authentication\Provider\Provider</parameter>
-        <parameter key="berny.ota.firewall.class">Berny\OneTimeAccessBundle\Security\Http\Firewall\Firewall</parameter>
+        <parameter key="xphere.ota.provider.class">Xphere\OneTimeAccessBundle\Security\Authentication\Provider\Provider</parameter>
+        <parameter key="xphere.ota.firewall.class">Xphere\OneTimeAccessBundle\Security\Http\Firewall\Firewall</parameter>
     </parameters>
 
     <services>
-        <service id="berny.ota.provider" class="%berny.ota.provider.class%" abstract="true">
+        <service id="xphere.ota.provider" class="%xphere.ota.provider.class%" abstract="true">
             <argument /> <!-- Firewall name -->
             <argument /> <!-- One-time-access user provider -->
             <argument type="service" id="security.user_checker" />
         </service>
 
-        <service id="berny.ota.firewall" class="%berny.ota.firewall.class%" abstract="true">
+        <service id="xphere.ota.firewall" class="%xphere.ota.firewall.class%" abstract="true">
             <argument /> <!-- Firewall name -->
             <argument /> <!-- Options -->
             <argument type="service" id="security.context" />
