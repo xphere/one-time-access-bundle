@@ -1,7 +1,7 @@
 <?php
 
 /*
-* This file is part of the Xphere\OneTimeAccessBundle package
+* This file is part of the xPheRe\OneTimeAccessBundle package
 *
 * (c) Berny Cantos <be@rny.cc>
 *
@@ -9,7 +9,7 @@
 * file that was distributed with this source code.
 */
 
-namespace Xphere\OneTimeAccessBundle\DependencyInjection\Security\Factory;
+namespace xPheRe\OneTimeAccessBundle\DependencyInjection\Security\Factory;
 
 use Symfony\Bundle\SecurityBundle\DependencyInjection\Security\Factory\SecurityFactoryInterface;
 use Symfony\Component\Config\Definition\Builder\NodeDefinition;

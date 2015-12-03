@@ -1,7 +1,7 @@
 <?php
 
 /*
-* This file is part of the Xphere\OneTimeAccessBundle package
+* This file is part of the xPheRe\OneTimeAccessBundle package
 *
 * (c) Berny Cantos <be@rny.cc>
 *
@@ -9,7 +9,7 @@
 * file that was distributed with this source code.
 */
 
-namespace Xphere\OneTimeAccessBundle\Security\Provider;
+namespace xPheRe\OneTimeAccessBundle\Security\Provider;
 
 interface ProviderInterface
 {

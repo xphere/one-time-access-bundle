@@ -1,7 +1,7 @@
 <?php
 
 /*
-* This file is part of the Xphere\OneTimeAccessBundle package
+* This file is part of the xPheRe\OneTimeAccessBundle package
 *
 * (c) Berny Cantos <be@rny.cc>
 *
@@ -9,9 +9,9 @@
 * file that was distributed with this source code.
 */
 
-namespace Xphere\OneTimeAccessBundle\Security\Http\Firewall;
+namespace xPheRe\OneTimeAccessBundle\Security\Http\Firewall;
 
-use Xphere\OneTimeAccessBundle\Security\Authentication\Token\Token;
+use xPheRe\OneTimeAccessBundle\Security\Authentication\Token\Token;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\Security\Http\Firewall\ListenerInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
